@@ -1,0 +1,435 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "$designer": {
+      "name": "CCoE-WVD",
+      "id": "fyityr"
+    }
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnConversationUpdateActivity",
+      "$designer": {
+        "id": "376720"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "gjMW8t"
+          },
+          "activity": "${SendActivity_gjMW8t()}"
+        },
+        {
+          "$kind": "Microsoft.OAuthInput",
+          "$designer": {
+            "id": "eMmRl8"
+          },
+          "timeout": 900000,
+          "maxTurnCount": 3,
+          "allowInterruptions": true,
+          "connectionName": "BotTeamsAuthADv1",
+          "text": "Please login to continue",
+          "title": "Login"
+        },
+        {
+          "$kind": "Microsoft.ChoiceInput",
+          "$designer": {
+            "id": "OYosmN"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": true,
+          "allowInterruptions": true,
+          "prompt": "${ChoiceInput_Prompt_OYosmN()}",
+          "choiceOptions": {
+            "includeNumbers": false,
+            "inlineOrMore": ", or ",
+            "inlineOr": " or ",
+            "inlineSeparator": ", "
+          },
+          "recognizerOptions": {
+            "recognizeOrdinals": true,
+            "recognizeNumbers": true,
+            "noValue": true,
+            "noAction": true
+          },
+          "style": "heroCard",
+          "choices": [
+            {
+              "value": "Reset WVD User Session"
+            },
+            {
+              "value": "Add WVD User"
+            },
+            {
+              "value": "More questions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "OU8kMj",
+        "name": "Reset session"
+      },
+      "intent": "collectinfo",
+      "actions": [
+        {
+          "$kind": "Microsoft.OAuthInput",
+          "$designer": {
+            "id": "X3vMx5"
+          },
+          "timeout": 900000,
+          "maxTurnCount": 3,
+          "allowInterruptions": true,
+          "connectionName": "BotTeamsAuthADv1",
+          "text": "Please login to continue",
+          "title": "Login"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "YyPB4j"
+          },
+          "activity": "${SendActivity_YyPB4j()}"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "3HN3I5"
+          },
+          "activity": "${SendActivity_3HN3I5()}"
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "U0dgwD"
+          },
+          "activityProcessed": true,
+          "dialog": "ResetSession"
+        },
+        {
+          "$kind": "Microsoft.EndDialog",
+          "$designer": {
+            "id": "m727n4"
+          }
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "xDBUOO"
+      },
+      "intent": "Addusers",
+      "actions": [
+        {
+          "$kind": "Microsoft.OAuthInput",
+          "$designer": {
+            "id": "AH1bfC"
+          },
+          "timeout": 900000,
+          "maxTurnCount": 3,
+          "allowInterruptions": true,
+          "connectionName": "BotTeamsAuthADv1",
+          "text": "Please login to continue",
+          "title": "Login"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "7CYAqd"
+          },
+          "activity": "${SendActivity_7CYAqd()}"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "c7ugf0"
+          },
+          "activity": "${SendActivity_c7ugf0()}"
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "zy14ZB"
+          },
+          "activityProcessed": true,
+          "dialog": "addwvduser"
+        },
+        {
+          "$kind": "Microsoft.EndDialog",
+          "$designer": {
+            "id": "3rYgEA"
+          }
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnUnknownIntent",
+      "$designer": {
+        "id": "8iRJU2"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.QnAMakerDialog",
+          "$designer": {
+            "id": "8RUiMR"
+          },
+          "noAnswer": "Sorry, I did not find an answer.",
+          "threshold": 0.3,
+          "activeLearningCardTitle": "Did you mean:",
+          "cardNoMatchText": "None of the above.",
+          "cardNoMatchResponse": "Thanks for the feedback.",
+          "top": 3,
+          "isTest": false,
+          "hostname": "=settings.qna.hostname",
+          "endpointKey": "=settings.qna.endpointkey",
+          "knowledgeBaseId": "=settings.qna.knowledgebaseid"
+        }
+      ],
+      "runOnce": false
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "9QTlFW"
+      },
+      "intent": "cancel",
+      "priority": 3,
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "DgUQpj"
+          },
+          "activity": "${SendActivity_DgUQpj()}"
+        },
+        {
+          "$kind": "Microsoft.CancelAllDialogs",
+          "$designer": {
+            "id": "L68jqJ"
+          },
+          "activityProcessed": true
+        },
+        {
+          "$kind": "Microsoft.EndDialog",
+          "$designer": {
+            "id": "CSk2t5"
+          }
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "XOVQKs"
+      },
+      "intent": "createKeyvault",
+      "actions": [
+        {
+          "$kind": "Microsoft.OAuthInput",
+          "$designer": {
+            "id": "19RXds"
+          },
+          "timeout": 900000,
+          "maxTurnCount": 3,
+          "allowInterruptions": true,
+          "connectionName": "BotTeamsAuthADv1",
+          "text": "Please login to continue",
+          "title": "Login"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "0ZYA8V"
+          },
+          "activity": "${SendActivity_0ZYA8V()}"
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "a5Mzea"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_a5Mzea()}",
+          "property": "lifecycle.id"
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "60b64B"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_60b64B()}",
+          "property": "comp.id"
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "KQe3Ie"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_KQe3Ie()}",
+          "property": "project.id"
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "OOp0q8"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_OOp0q8()}",
+          "property": "purpose.id"
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "jZ9y0y"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_jZ9y0y()}",
+          "property": "systemid.id"
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "RDPGm2"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_RDPGm2()}",
+          "property": "kvrs.id"
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "fM7Dtg"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_fM7Dtg()}",
+          "property": "kvsecret.id"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "MAwrng"
+          },
+          "activity": "${SendActivity_MAwrng()}"
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "J4CoHL"
+          },
+          "activityProcessed": true,
+          "dialog": "keyvaultname"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "AKMtMk"
+      },
+      "intent": "addjumpserveruser",
+      "actions": [
+        {
+          "$kind": "Microsoft.OAuthInput",
+          "$designer": {
+            "id": "Fa6NhV"
+          },
+          "timeout": 900000,
+          "maxTurnCount": 3,
+          "allowInterruptions": true,
+          "connectionName": "BotTeamsAuthADv1",
+          "text": "Please login to continue",
+          "title": "Login"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "YIIjUq"
+          },
+          "activity": "${SendActivity_YIIjUq()}"
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "QWMNOX"
+          },
+          "activityProcessed": true,
+          "dialog": "jumpserveruserid"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "NQCKYn"
+          },
+          "activity": "${SendActivity_NQCKYn()}"
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "D93x7q"
+          },
+          "activityProcessed": true,
+          "dialog": "addusertojp"
+        }
+      ]
+    }
+  ],
+  "$schema": "https://raw.githubusercontent.com/microsoft/BotFramework-Composer/stable/Composer/packages/server/schemas/sdk.schema",
+  "generator": "ccoe-wvd.lg",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": [
+      {
+        "intent": "collectinfo",
+        "pattern": "Reset WVD user session"
+      },
+      {
+        "intent": "Addusers",
+        "pattern": "Add WVD User"
+      },
+      {
+        "intent": "cancel",
+        "pattern": "(cancel|stop|exit)"
+      },
+      {
+        "intent": "createKeyvault",
+        "pattern": "Create Key Vault"
+      },
+      {
+        "intent": "addjumpserveruser",
+        "pattern": "add jumpserver user"
+      }
+    ]
+  }
+}

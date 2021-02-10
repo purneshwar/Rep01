@@ -1,0 +1,49 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "PafLmB",
+    "name": "addjumpserverprocess"
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "id": "Y5hALM"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.OAuthInput",
+          "$designer": {
+            "id": "Kp110X"
+          },
+          "timeout": 900000,
+          "maxTurnCount": 3,
+          "allowInterruptions": true,
+          "connectionName": "BotTeamsAuthADv1",
+          "text": "Please login to conitnue",
+          "title": "Login"
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "DCReFO"
+          },
+          "activityProcessed": true,
+          "dialog": "jumpserveruserid"
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "5MIvha"
+          },
+          "activityProcessed": true,
+          "dialog": "addusertojp"
+        }
+      ]
+    }
+  ],
+  "generator": "addjumpserverprocess.lg"
+}
