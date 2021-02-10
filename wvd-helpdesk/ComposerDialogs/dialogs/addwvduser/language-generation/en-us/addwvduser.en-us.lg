@@ -1,0 +1,35 @@
+[import](common.lg)
+
+
+
+
+
+
+
+
+# SendActivity_SlFwqi()
+- i got error: ${response.content.message}
+
+
+
+
+# SendActivity_LaqnnL()
+- The user ${user.id} has been added!! 
+
+
+# SendActivity_gQegiE()
+[Activity
+    type = typing
+]
+# SendActivity_VM6egU()
+[Activity
+    type = typing
+]
+# SendActivity_IA2OUX()
+[Activity
+    type = typing
+]
+# SendActivity_Szwo0b()
+[Activity
+    type = typing
+]

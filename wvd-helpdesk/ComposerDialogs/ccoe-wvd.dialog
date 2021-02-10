@@ -1,0 +1,250 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "$designer": {
+      "name": "CCoE-WVD",
+      "id": "fyityr"
+    }
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnConversationUpdateActivity",
+      "$designer": {
+        "id": "376720"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "gjMW8t"
+          },
+          "activity": "${SendActivity_gjMW8t()}"
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "UlDoQs"
+          },
+          "activityProcessed": true,
+          "dialog": "Inputnumber"
+        },
+        {
+          "$kind": "Microsoft.ChoiceInput",
+          "$designer": {
+            "id": "4Cb7q5"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": true,
+          "allowInterruptions": true,
+          "prompt": "${ChoiceInput_Prompt_4Cb7q5()}",
+          "choiceOptions": {
+            "includeNumbers": false,
+            "inlineOrMore": ", or ",
+            "inlineOr": " or ",
+            "inlineSeparator": ", "
+          },
+          "recognizerOptions": {
+            "recognizeOrdinals": true,
+            "recognizeNumbers": true,
+            "noValue": true,
+            "noAction": true
+          },
+          "style": "heroCard",
+          "choices": [
+            {
+              "value": "Reset user session"
+            },
+            {
+              "value": "Add user"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "OU8kMj",
+        "name": "Reset session"
+      },
+      "intent": "collectinfo",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "YyPB4j"
+          },
+          "activity": "${SendActivity_YyPB4j()}"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "3HN3I5"
+          },
+          "activity": "${SendActivity_3HN3I5()}"
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "U0dgwD"
+          },
+          "activityProcessed": true,
+          "dialog": "ResetSession"
+        },
+        {
+          "$kind": "Microsoft.EndDialog",
+          "$designer": {
+            "id": "m727n4"
+          }
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "xDBUOO"
+      },
+      "intent": "Addusers",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "7CYAqd"
+          },
+          "activity": "${SendActivity_7CYAqd()}"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "c7ugf0"
+          },
+          "activity": "${SendActivity_c7ugf0()}"
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "zy14ZB"
+          },
+          "activityProcessed": true,
+          "dialog": "addwvduser"
+        },
+        {
+          "$kind": "Microsoft.EndDialog",
+          "$designer": {
+            "id": "3rYgEA"
+          }
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnUnknownIntent",
+      "$designer": {
+        "id": "8iRJU2"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "LciWSY",
+            "name": "Send a response"
+          },
+          "activity": "${SendActivity_LciWSY()}"
+        },
+        {
+          "$kind": "Microsoft.DeleteProperty",
+          "$designer": {
+            "id": "xpbzsS"
+          },
+          "property": "user.id"
+        },
+        {
+          "$kind": "Microsoft.ChoiceInput",
+          "$designer": {
+            "id": "xG5SR5"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": true,
+          "allowInterruptions": true,
+          "prompt": "${ChoiceInput_Prompt_xG5SR5()}",
+          "choiceOptions": {
+            "includeNumbers": false,
+            "inlineOrMore": ", or ",
+            "inlineOr": " or ",
+            "inlineSeparator": ", "
+          },
+          "recognizerOptions": {
+            "recognizeOrdinals": true,
+            "recognizeNumbers": true,
+            "noValue": true,
+            "noAction": true
+          },
+          "style": "heroCard",
+          "choices": [
+            {
+              "value": "Reset user session"
+            },
+            {
+              "value": "Add user"
+            }
+          ]
+        }
+      ],
+      "runOnce": false
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "9QTlFW"
+      },
+      "intent": "cancel",
+      "priority": 3,
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "DgUQpj"
+          },
+          "activity": "${SendActivity_DgUQpj()}"
+        },
+        {
+          "$kind": "Microsoft.CancelAllDialogs",
+          "$designer": {
+            "id": "L68jqJ"
+          },
+          "activityProcessed": true
+        },
+        {
+          "$kind": "Microsoft.EndDialog",
+          "$designer": {
+            "id": "CSk2t5"
+          }
+        }
+      ]
+    }
+  ],
+  "$schema": "https://raw.githubusercontent.com/microsoft/BotFramework-Composer/stable/Composer/packages/server/schemas/sdk.schema",
+  "generator": "ccoe-wvd.lg",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": [
+      {
+        "intent": "collectinfo",
+        "pattern": "Reset user session"
+      },
+      {
+        "intent": "Addusers",
+        "pattern": "add user"
+      },
+      {
+        "intent": "cancel",
+        "pattern": "(cancel|stop|exit)"
+      }
+    ]
+  }
+}

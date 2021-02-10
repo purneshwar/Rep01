@@ -1,0 +1,103 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "BpbvBh",
+    "name": "addwvduser"
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "addwvduserdialog",
+        "id": "7VPMc7"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "uQG6Dc"
+          },
+          "activityProcessed": true,
+          "dialog": "userinputemail"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "gQegiE"
+          },
+          "activity": "${SendActivity_gQegiE()}"
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "iZc3xH"
+          },
+          "method": "POST",
+          "headers": {
+            "message": "pbxsupportdf8934654mgfds0"
+          },
+          "url": "https://b2924d3b-5a53-4084-93ce-8be143dd5619.webhook.eus2.azure-automation.net/webhooks?token=I29lmmfrd%2bKjT5k7EvMPtF8jXUSg7syWk522qdGf0Ac%3d",
+          "body": {
+            "UPN": "${user.id}"
+          },
+          "resultProperty": "dialog.api_response",
+          "responseType": "json"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "VV8kJ4"
+          },
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "SlFwqi"
+              },
+              "activity": "${SendActivity_SlFwqi()}"
+            }
+          ],
+          "condition": "dialog.api_response.statusCode == 202"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "VM6egU"
+          },
+          "activity": "${SendActivity_VM6egU()}"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "IA2OUX"
+          },
+          "activity": "${SendActivity_IA2OUX()}"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "Szwo0b"
+          },
+          "activity": "${SendActivity_Szwo0b()}"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "LaqnnL"
+          },
+          "activity": "${SendActivity_LaqnnL()}"
+        },
+        {
+          "$kind": "Microsoft.DeleteProperty",
+          "$designer": {
+            "id": "VU004E"
+          },
+          "property": "user.id"
+        }
+      ]
+    }
+  ],
+  "generator": "addwvduser.lg"
+}
